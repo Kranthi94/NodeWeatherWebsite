@@ -10,6 +10,10 @@ const express = require('express');
 
 const app = express();
 
+// Port No
+
+const port = process.env.PORT || 3000;
+
 // Define paths
 
 const publicDirectoryPath = path.join(__dirname, '../public');
@@ -105,7 +109,7 @@ app.get('*', (request, response) => {
     });
 });
 
-app.listen(8888, () => {
+app.listen(port, () => {
 
-    console.log('Server successfully started on port 8888');
+    console.log('Server successfully started on port ' + port);
 });

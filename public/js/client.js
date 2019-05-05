@@ -18,7 +18,7 @@ form.addEventListener('submit', (event) => {
         return console.log('You need to enter a location');
     }
 
-    fetch('http://localhost:8888/weather?address=' + location + '').then((response) => {
+    fetch('/weather?address=' + location + '').then((response) => {
 
         console.log(response);
 
