@@ -8,6 +8,10 @@ const divSuccess = document.querySelector('#div_success');
 
 const divFailure = document.querySelector('#div_failure');
 
+divSuccess.style.display = "none";
+
+divFailure.style.display = "block";
+
 form.addEventListener('submit', (event) => {
 
     event.preventDefault();
@@ -15,8 +19,14 @@ form.addEventListener('submit', (event) => {
     const location = input.value;
 
     if(!location) {
+        
+        divFailure.querySelector('#id_error').textContent = "You need to enter a location";
+
         return console.log('You need to enter a location');
     }
+
+
+    divFailure.querySelector('#id_error').textContent = "Loading...";
 
     fetch('/weather?address=' + location + '').then((response) => {
 
@@ -31,26 +41,18 @@ form.addEventListener('submit', (event) => {
                 divFailure.style.display = "block";
 
                 divFailure.querySelector('#id_error').textContent = data.error;
-                
-                console.log(data.error);
-
+            
             }else{
 
                 divFailure.style.display = "none";
 
                 divSuccess.style.display = "block";
 
-                divSuccess.querySelector('#id_location').textContent = data.location;
+                divSuccess.querySelector('#id_location').textContent = 'Location : ' + data.location;
 
-                divSuccess.querySelector('#id_temperature').textContent = data.precipProbability;
+                divSuccess.querySelector('#id_temperature').textContent = 'Precipitation Probability : ' + data.precipProbability;
 
-                divSuccess.querySelector('#id_precipitation').textContent = data.temperature;
-
-                console.log('Location : ' + data.location);
-
-                console.log('Precipitation Probability : ' + data.precipProbability);
-
-                console.log('Temperature : ' + data.temperature);
+                divSuccess.querySelector('#id_precipitation').textContent = 'Temperature : ' + data.temperature;
             }
         })
     })

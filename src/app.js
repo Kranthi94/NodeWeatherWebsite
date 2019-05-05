@@ -36,7 +36,7 @@ app.get('', (request, response) => {
 
     response.render('index', {
 
-        title : 'About Page',
+        title : 'Home Page',
         author : 'Kranthi'
     })
 });
@@ -83,9 +83,10 @@ app.get('/weather', (request, response) => {
 
 app.get('/help', (request, response) => {
     
-    response.render('index.hbs', {
+    response.render('help.hbs', {
         title : 'Help Page',
-        author : 'Riya'
+        author : 'Kranthi',
+        helpText : 'This site can be used to get weather updates for a location'
     });
 
 });
@@ -94,7 +95,8 @@ app.get('/about', (request, response) => {
     
     response.render('about.hbs', {
         title : 'About Page',
-        author : 'Kitty'
+        author : 'Kranthi',
+        about : "This site is developed using mapbox and darksky Api's"
     });
 
 });
@@ -104,7 +106,7 @@ app.get('*', (request, response) => {
     
     response.render('error.hbs', {
         title : 'Error',
-        author : 'Kitty',
+        author : 'Kranthi',
         errorMessage : 'Page you are searching is not available'
     });
 });
